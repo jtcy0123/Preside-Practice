@@ -1,0 +1,14 @@
+{
+    "name":"Preside Practice",
+    "version":"1.0.0",
+    "author":"Jasmin",
+    "slug":"presidepractice",
+    "createPackageDirectory" : false,
+    "private":true,
+    "installPaths":{
+        "presidecms":"preside"
+    },
+    "dependencies":{
+        "presidecms":"stable"
+    }
+}
