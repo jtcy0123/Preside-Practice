@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form i18nBaseUri="page-types.event_detail:">
+
+	<tab id="event_detail">
+		<fieldset id="event_detail">
+			<field binding="event_detail.startdate" />
+			<field binding="event_detail.enddate" />
+			<field binding="event_detail.regions" />
+            <field binding="event_detail.category" />
+            <field binding="event_detail.programmes" />
+		</fieldset>
+	</tab>
+</form>
