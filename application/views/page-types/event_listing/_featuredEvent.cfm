@@ -1,4 +1,5 @@
 <cfset featuredEvent = args.featuredEvent ?: queryNew("")>
+
 <cfoutput query="featuredEvent">
 	<div class="well">
 		<h3>#title#</h3>

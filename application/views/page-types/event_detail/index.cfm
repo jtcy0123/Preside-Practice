@@ -3,7 +3,9 @@
 <cf_presideparam name="args.bottom_content" field="page.bottom_content"     editable="true"  />
 <cf_presideparam name="args.startdate"		                                editable="false" />
 <cf_presideparam name="args.enddate"		                                editable="false" />
+<cf_presideparam name="args.pageId" 		field="page.id"		            editable="false" />
 <cf_presideparam name="args.region"  		field="GROUP_CONCAT(region.id)" editable="false" />
+
 
 <cfoutput>
 	<div class="well">
@@ -20,6 +22,6 @@
 		)#
 
 	<hr>
-	#renderViewlet( event="page-types.event_detail.relatedRegionEvent", args={ regionIds = args.region} )#
+	#renderViewlet( event="page-types.event_detail.relatedEvent", args={ excludeEventId=args.pageId, regionIds = args.region} )#
 
 </cfoutput>

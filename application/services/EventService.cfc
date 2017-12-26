@@ -23,11 +23,7 @@ component {
 		};
 
 		if ( len(arguments.id) ) {
-			if ( len(arguments.parentPage) ) {
-				filter &= " AND page.id IN ( :page.id ) ";
-			} else {
-				filter &= " AND page.id NOT IN ( :page.id ) ";
-			}
+			filter &= " AND page.id IN ( :page.id ) ";
 			filterParams["page.id"] = ListToArray( arguments.id )
 		};
 
@@ -41,7 +37,7 @@ component {
 			filterParams["region.id"] = ListToArray( arguments.region );
 		};
 
-		return _getAllEventDetail().selectData(
+		return _getEventDetail().selectData(
 			  selectFields = ["page.id", "page.title","event_detail.startdate as start","event_detail.enddate as end", "GROUP_CONCAT(regions.label) as regions", "event_detail.category as category"]
 			, filter       = filter
 			, filterParams = filterParams
@@ -50,7 +46,37 @@ component {
 		);
 	}
 
-	private function _getAllEventDetail(){
+	public function getEventByID( id="" ) {
+		return _getEventDetail().selectData(
+			  selectFields = ["page.id", "page.title", "event_detail.startdate as start", "event_detail.enddate as end"]
+			, filter       = "DATE(event_detail.startdate) >= DATE(now()) AND page.id IN ( :page.id )"
+			, filterParams = { "page.id" = listToArray(arguments.id) }
+		);
+	}
+
+	public function getRelatedEvent( string id="", string region="" ) {
+		var filter       = "DATE(event_detail.startdate) >= DATE(now())";
+		var filterParams = {};
+
+		if ( len(arguments.id) ) {
+			filter &= " AND page.id NOT IN ( :page.id )";
+			filterParams["page.id"] = listToArray(arguments.id);
+		}
+
+		if (len(arguments.region) ) {
+			filter &= " AND region.id IN ( :region.id) ";
+			filterParams["region.id"] = ListToArray( arguments.region );
+		};
+
+		return _getEventDetail().selectData(
+			  selectFields = ["page.id", "page.title", "event_detail.startdate as start", "event_detail.enddate as end"]
+			, filter       = filter
+			, filterParams = filterParams
+			, groupBy      = "event_detail.id"
+		);
+	}
+
+	private function _getEventDetail() {
 		return _eventDetail;
 	}
 
