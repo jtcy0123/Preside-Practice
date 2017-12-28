@@ -39,6 +39,10 @@
 		</cfloop>
 	</ul>
 
+	<br>
+	<h4><u>Expired Events</u></h4>
+	#renderViewlet( event="page-types.event_detail.expiredEvent" )#
+
 	<p>#args.bottom_content#</p>
 
 </cfoutput>
