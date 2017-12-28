@@ -1,12 +1,15 @@
+/**
+* @presideService
+*/
 component {
 	/***
 	*@event_detail.inject presidecms:object:event_detail
+	*@event_booking.inject presidecms:object:event_booking
 	**/
 
 	public function init( required any event_detail ) {
 		_setEventDetail(arguments.event_detail);
 	}
-
 
 	public function getAllEventDetail( string id="", string parentPage="", string region="", string category="" ) {
 
@@ -43,24 +46,25 @@ component {
 			, filterParams = filterParams
 			, saveFilters  = ["livePages"]
 			, groupBy      = "event_detail.id"
+			, orderBy      = "event_detail.startdate"
 		);
 	}
 
 	public function getEventByID( id="" ) {
 		return _getEventDetail().selectData(
-			  selectFields = ["page.id", "page.title", "event_detail.startdate as start", "event_detail.enddate as end"]
+			  selectFields = ["page.id", "page.title", "event_detail.startdate as start", "event_detail.enddate as end", "event_detail.price as price"]
 			, filter       = "DATE(event_detail.startdate) >= DATE(now()) AND page.id IN ( :page.id )"
 			, filterParams = { "page.id" = listToArray(arguments.id) }
 		);
 	}
 
-	public function getRelatedEvent( string id="", string region="" ) {
+	public function getRelatedEvent( string excludeId="", string region="", string numOfEvent="5" ) {
 		var filter       = "DATE(event_detail.startdate) >= DATE(now())";
 		var filterParams = {};
 
-		if ( len(arguments.id) ) {
+		if ( len(arguments.excludeId) ) {
 			filter &= " AND page.id NOT IN ( :page.id )";
-			filterParams["page.id"] = listToArray(arguments.id);
+			filterParams["page.id"] = listToArray(arguments.excludeId);
 		}
 
 		if (len(arguments.region) ) {
@@ -69,10 +73,52 @@ component {
 		};
 
 		return _getEventDetail().selectData(
-			  selectFields = ["page.id", "page.title", "event_detail.startdate as start", "event_detail.enddate as end"]
+			  selectFields = ["page.id", "page.title", "event_detail.startdate as start", "event_detail.enddate as end", "GROUP_CONCAT(regions.label) as regions"]
 			, filter       = filter
 			, filterParams = filterParams
 			, groupBy      = "event_detail.id"
+			, orderBy      = "event_detail.startdate"
+			, maxRows      = arguments.numOfEvent
+		);
+	}
+
+	public function getExpiredEvent() {
+		var filter       = "DATE(event_detail.startdate) < DATE(now())";
+
+		return _getEventDetail().selectData(
+			  selectFields = ["page.id", "page.title", "event_detail.startdate as start", "event_detail.enddate as end"]
+			, filter       = filter
+			, groupBy      = "event_detail.id"
+			, orderBy      = "event_detail.startdate"
+		);
+	}
+
+	public function saveBooking(
+		  required string  firstname
+        , required string  lastname
+        , required string  email
+        , required numeric num_of_seats
+        , required string  session
+        ,                  special_request
+        , required numeric total_amount
+        , required string  event_detail
+	) {
+		var bookingLabel = arguments.firstname & " - " & datetimeFormat(now(), "dd mmm yyyy HH:mm:ss")
+		var bookingData = {
+			  label           = bookingLabel
+			, firstname       = arguments.firstname
+            , lastname        = arguments.lastname
+            , email           = arguments.email
+            , num_of_seats    = arguments.num_of_seats
+            , sessions        = arguments.session
+            , special_request = arguments.special_request
+            , total_amount    = arguments.total_amount
+            , event_detail    = arguments.event_detail
+		}
+		return $getPresideObjectService().insertData(
+			  objectName              = "event_booking"
+			, data                    = bookingData
+			, insertManyToManyRecords = true
 		);
 	}
 

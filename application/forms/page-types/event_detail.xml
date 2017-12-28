@@ -3,11 +3,15 @@
 
 	<tab id="event_detail">
 		<fieldset id="event_detail">
-			<field binding="event_detail.startdate"  />
-			<field binding="event_detail.enddate"    />
-			<field binding="event_detail.regions"    />
-            <field binding="event_detail.category"   />
-            <field binding="event_detail.programmes" />
+			<field binding="event_detail.startdate"                      />
+			<field binding="event_detail.enddate"                        />
+			<field binding="event_detail.bookable"                       />
+			<field binding="event_detail.price"                          />
+            <field binding="event_detail.document" control="assetpicker" />
+			<field binding="event_detail.regions"                        />
+            <field binding="event_detail.category"                       />
+            <field binding="event_detail.programmes"                     />
+            <field binding="event_detail.sessions"                       />
 		</fieldset>
 	</tab>
 </form>
