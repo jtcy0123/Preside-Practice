@@ -18,20 +18,24 @@ component extends="preside.system.config.Config" {
 		settings.features.websiteUsers.enabled = true;
 
 		settings.assetmanager.derivatives = _getConfiguredAssetDerivatives();
+
+		_setupEmailSettings();
+
+		settings.notificationTopics.append( "newBooking" );
 	}
 
 	private struct function _getConfiguredAssetDerivatives() {
-		var derivatives  = super._getConfiguredAssetDerivatives();
+		var derivatives = super._getConfiguredAssetDerivatives();
 
 		derivatives.mainImage = {
-			  permissions = "inherit"
+			  permissions     = "inherit"
 			, transformations = [
 				 { method="shrinkToFit", args={ width=700, height=450 } }
 			  ]
 		};
 
-		derivatives.eventPdf = {
-			  permissions = "inherit"
+		derivatives.eventPdf  = {
+			  permissions     = "inherit"
 			, transformations = [
 				   { method="pdfPreview" , args={ page=1 }, inputfiletype="pdf", outputfiletype="jpg" }
 				 , { method="shrinkToFit", args={ width=100, height=100 } }
@@ -39,6 +43,14 @@ component extends="preside.system.config.Config" {
 		};
 
 		return derivatives;
+	}
 
+	private function _setupEmailSettings() {
+		settings.email.templates.bookingConfirmation = {
+			  recipientType = "anonymous"
+			, parameters    = [
+				{ id="bookingSummary", required=true }
+			]
+		};
 	}
 }

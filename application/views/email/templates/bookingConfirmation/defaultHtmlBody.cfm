@@ -1,0 +1,1 @@
+<p>${bookingSummary}</p>
