@@ -1,6 +1,8 @@
 component {
-	property name="formsService" inject="formsService";
-	property name="eventService" inject="EventService";
+	property name="formsService"        inject="formsService";
+	property name="eventService"        inject="EventService";
+	property name="eventBookingService" inject="EventBookingService";
+	property name="notificationService" inject="notificationService";
 
 	private function index( event, rc, prc, args={} ) {
 
@@ -47,7 +49,15 @@ component {
 				, event_detail    = eventId
 			}
 
-			var results     = eventService.saveBooking( argumentCollection = bookingData );
+			var results     = eventBookingService.saveBooking( argumentCollection = bookingData );
+
+			if ( len(results) ) {
+				notificationService.createNotification(
+					  topic = "newBooking"
+					, type  = "INFO"
+					, data  = bookingData
+				);
+			}
 
 			setNextEvent(
 				  url           = event.buildLink(page="event_booking_page")

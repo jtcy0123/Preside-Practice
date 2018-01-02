@@ -6,7 +6,7 @@
 <cfset eventId    = args.eventId ?: ""          />
 <cfset eventPrice = prc.eventDetail.price ?: "" />
 <cfset eventTitle = prc.eventDetail.title ?: "" />
-
+<!--- <cfdump var="#rc.results#"> --->
 <cfoutput>
 	<h1>#args.title#</h1>
 

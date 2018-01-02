@@ -4,7 +4,6 @@
 component {
 	/***
 	*@event_detail.inject presidecms:object:event_detail
-	*@event_booking.inject presidecms:object:event_booking
 	**/
 
 	public function init( required any event_detail ) {
@@ -90,35 +89,6 @@ component {
 			, filter       = filter
 			, groupBy      = "event_detail.id"
 			, orderBy      = "event_detail.startdate"
-		);
-	}
-
-	public function saveBooking(
-		  required string  firstname
-        , required string  lastname
-        , required string  email
-        , required numeric num_of_seats
-        , required string  session
-        ,                  special_request
-        , required numeric total_amount
-        , required string  event_detail
-	) {
-		var bookingLabel = arguments.firstname & " - " & datetimeFormat(now(), "dd mmm yyyy HH:mm:ss")
-		var bookingData = {
-			  label           = bookingLabel
-			, firstname       = arguments.firstname
-            , lastname        = arguments.lastname
-            , email           = arguments.email
-            , num_of_seats    = arguments.num_of_seats
-            , sessions        = arguments.session
-            , special_request = arguments.special_request
-            , total_amount    = arguments.total_amount
-            , event_detail    = arguments.event_detail
-		}
-		return $getPresideObjectService().insertData(
-			  objectName              = "event_booking"
-			, data                    = bookingData
-			, insertManyToManyRecords = true
 		);
 	}
 
