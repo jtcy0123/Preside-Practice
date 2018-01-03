@@ -28,12 +28,14 @@
 		<p>Event starts from #dateFormat(args.startdate, "dd mmm yyyy")# to #dateFormat(args.enddate, "dd mmm yyyy")#</p>
 		<p>Time : #timeFormat(args.startdate, "HH:mm")# to #timeFormat(args.enddate, "HH:mm")#</p>
 
-		<cfif #args.startdate# GTE now() >
-			<cfif #args.bookable# >
-				<a href="#event.buildLink(page="event_booking_page", querystring="evid=#args.pageId#")#">Book now</a>
+		<cfif #args.startdate# GTE now() && #args.bookable# >
+			<cfif event.fullyBooked( #args.pageId# ) >
+				<i>Sorry, event fully booked.</i>
 			<cfelse>
-				<i>Not bookable at the moment.</i>
+				<a href="#event.buildLink(page="event_booking_page", querystring="evid=#args.pageId#")#">Book now</a>
 			</cfif>
+		<cfelse>
+			<i>Not bookable at the moment.</i>
 		</cfif>
 	</div>
 

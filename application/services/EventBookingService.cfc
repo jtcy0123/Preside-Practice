@@ -2,8 +2,13 @@
 * @presideService
 */
 component {
+	/**
+	* @siteTreeService.inject siteTreeService
+	*/
 
-	public function init() {}
+	public function init( required any siteTreeService ) {
+		return _setSiteTreeService( arguments.siteTreeService )
+	}
 
 	public function getBookingDetailsById( string bookingId="" ) {
 		if ( !len(arguments.bookingId) ) {
@@ -37,7 +42,7 @@ component {
         , required numeric total_amount
         , required string  event_detail
 	) {
-		var bookingLabel = arguments.firstname & " - " & datetimeFormat(now(), "dd mmm yyyy HH:mm:ss")
+		var bookingLabel = arguments.firstname & " - " & datetimeFormat(now(), "dd mmm yyyy HH:mm:ss");
 		var bookingData  = {
 			  label           = bookingLabel
 			, firstname       = arguments.firstname
@@ -48,21 +53,46 @@ component {
             , special_request = arguments.special_request
             , total_amount    = arguments.total_amount
             , event_detail    = arguments.event_detail
-		}
+		};
 		var newBooking   = "";
-		newBooking = $getPresideObjectService().insertData(
-			  objectName              = "event_booking"
-			, data                    = bookingData
-			, insertManyToManyRecords = true
+		var seatsDetails = $getPresideObjectService().selectData(
+			objectName = "event_detail"
+			, selectFields = [ "total_seats", "seats_booked" ]
+			, filter       = { "id"=arguments.event_detail }
 		);
 
-		$sendEmail(
-			  template = "bookingConfirmation"
-			, to       = [ arguments.email ]
-			, args     = { bookingId = newBooking }
-		);
+		if ( !len(seatsDetails.seats_booked) ) {
+			seatsDetails.seats_booked = 0;
+		}
+
+		if ( len(seatsDetails.total_seats) && len(seatsDetails.seats_booked) && ( seatsDetails.total_seats GTE seatsDetails.seats_booked + arguments.num_of_seats ) ) {
+			newBooking   = $getPresideObjectService().insertData(
+				  objectName              = "event_booking"
+				, data                    = bookingData
+				, insertManyToManyRecords = true
+			);
+
+			_siteTreeService.editPage(
+				  id           = arguments.event_detail
+				, seats_booked = val( seatsDetails.seats_booked + arguments.num_of_seats )
+			);
+
+			$sendEmail(
+				  template = "bookingConfirmation"
+				, to       = [ arguments.email ]
+				, args     = { bookingId = newBooking }
+			);
+		}
 
 		return newBooking;
 	}
 
+	// getters and setters
+	private any function _getSiteTreeService() {
+		return _siteTreeService;
+	}
+
+	private void function _setSiteTreeService( required any siteTreeService ) {
+		_siteTreeService = arguments.siteTreeService;
+	}
 }

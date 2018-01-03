@@ -39,12 +39,12 @@ component {
 			var totalAmount = bookingFormData.num_of_seats * prc.eventDetail.price ;
 
 			var bookingData = {
-				  firstname       = bookingFormData.firstname
-				, lastname        = bookingFormData.lastname
-				, email           = bookingFormData.email
+				  firstname       = trimHtml( bookingFormData.firstname )
+				, lastname        = trimHtml( bookingFormData.lastname )
+				, email           = trimHtml( bookingFormData.email )
 				, num_of_seats    = bookingFormData.num_of_seats
 				, session         = bookingFormData.session
-				, special_request = bookingFormData.special_request
+				, special_request = trimHtml( bookingFormData.special_request )
 				, total_amount    = totalAmount
 				, event_detail    = eventId
 			}

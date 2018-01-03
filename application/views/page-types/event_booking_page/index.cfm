@@ -6,7 +6,7 @@
 <cfset eventId    = args.eventId ?: ""          />
 <cfset eventPrice = prc.eventDetail.price ?: "" />
 <cfset eventTitle = prc.eventDetail.title ?: "" />
-<!--- <cfdump var="#rc.results#"> --->
+
 <cfoutput>
 	<h1>#args.title#</h1>
 
@@ -20,19 +20,23 @@
 		<p>Event : #eventTitle#</p>
 		<p>Price : RM #numberFormat( eventPrice, "0.00" )#/seat</p>
 
-		<form id="booking-form" action="#event.buildLink(linkTo="page-types.event_booking_page.createBooking")#" class="form form-horizontal" method="POST">
+		<cfif event.fullyBooked( eventId ) >
+			<p>Seats sold out for this event.</p>
+		<cfelse>
+			<form id="booking-form" action="#event.buildLink(linkTo="page-types.event_booking_page.createBooking")#" class="form form-horizontal" method="POST">
 
-			#renderForm(
-				  formName         = "event_booking.booking_info"
-				, context          = "website"
-				, formId           = "booking-form"
-				, validationResult = rc.validationResult ?: ""
-				, savedData        = rc.formData ?: {}
-			)#
+				#renderForm(
+					  formName         = "event_booking.booking_info"
+					, context          = "website"
+					, formId           = "booking-form"
+					, validationResult = rc.validationResult ?: ""
+					, savedData        = rc.formData ?: {}
+				)#
 
-			<input type="hidden" name="eventId"    value="#eventId#"    />
-			<input type="submit"                   value="Submit"       />
-		</form>
+				<input type="hidden" name="eventId"    value="#eventId#"    />
+				<input type="submit"                   value="Submit"       />
+			</form>
+		</cfif>
 	</cfif>
 
 	#args.main_content#
