@@ -9,7 +9,9 @@ component  {
 	property name="startdate"      type="date"    dbtype="datetime"                                                     ;
 	property name="enddate"        type="date"    dbtype="datetime"                                                     ;
 	property name="bookable"       type="boolean" dbtype="boolean"                                                      ;
-	property name="price"          type="numeric" dbtype="double"                                                       ;
+	property name="price"          type="numeric"                                                        ;
+	property name="total_seats"    type="numeric" dbtype="integer"                                                      ;
+	property name="seats_booked"   type="numeric" dbtype="integer"                                                      ;
 
 	property name="document"       relationship="many-to-one"  relatedTo="asset"         allowedTypes="pdf"             ;
 	property name="regions"        relationship="many-to-many" relatedTo="region"                                       ;

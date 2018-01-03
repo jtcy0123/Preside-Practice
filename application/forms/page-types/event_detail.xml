@@ -12,6 +12,8 @@
             <field binding="event_detail.category"                       />
             <field binding="event_detail.programmes"                     />
             <field binding="event_detail.sessions"                       />
+            <field binding="event_detail.total_seats"                    />
+			<field binding="event_detail.seats_booked"                   />
 		</fieldset>
 	</tab>
 </form>

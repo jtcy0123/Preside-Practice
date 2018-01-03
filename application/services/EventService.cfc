@@ -2,9 +2,9 @@
 * @presideService
 */
 component {
-	/***
+	/**
 	*@event_detail.inject presidecms:object:event_detail
-	**/
+	*/
 
 	public function init( required any event_detail ) {
 		_setEventDetail(arguments.event_detail);
@@ -51,7 +51,7 @@ component {
 
 	public function getEventByID( id="" ) {
 		return _getEventDetail().selectData(
-			  selectFields = ["page.id", "page.title", "event_detail.startdate as start", "event_detail.enddate as end", "event_detail.price as price"]
+			  selectFields = ["page.id", "page.title", "event_detail.startdate as start", "event_detail.enddate as end", "event_detail.price as price", "event_detail.total_seats", "event_detail.seats_booked"]
 			, filter       = "DATE(event_detail.startdate) >= DATE(now()) AND page.id IN ( :page.id )"
 			, filterParams = { "page.id" = listToArray(arguments.id) }
 		);

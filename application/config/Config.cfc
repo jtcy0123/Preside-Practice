@@ -20,8 +20,12 @@ component extends="preside.system.config.Config" {
 		settings.assetmanager.derivatives = _getConfiguredAssetDerivatives();
 
 		_setupEmailSettings();
+		_setupInterceptors();
 
 		settings.notificationTopics.append( "newBooking" );
+		settings.notificationTopics.append( "seatsSoldOut" );
+
+		coldbox.requestContextDecorator = "app.decorators.RequestContextDecorator";
 	}
 
 	private struct function _getConfiguredAssetDerivatives() {
@@ -52,5 +56,9 @@ component extends="preside.system.config.Config" {
 				{ id="bookingSummary", required=true }
 			]
 		};
+	}
+
+	private void function _setupInterceptors() {
+		interceptors.append( { class="app.interceptors.DataChangeInterceptor", properties={} } );
 	}
 }
