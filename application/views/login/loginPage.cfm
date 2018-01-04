@@ -1,9 +1,9 @@
-<cfparam name="args.title" field="page.title" editable="true" />
-<cfparam name="args.login_required" field="login.login_required" default="The resource you are attempting to access requires a secure login. Please login using the form below." />
-<cfparam name="args.login_failed" field="login.login_failed" default="The email address and password combination you supplied did not match our records. Please try again." />
+<cfparam name="args.title"           field="page.title" editable="true" />
+<cfparam name="args.login_required"  field="login.login_required" default="The resource you are attempting to access requires a secure login. Please login using the form below." />
+<cfparam name="args.login_failed"    field="login.login_failed"   default="The email address and password combination you supplied did not match our records. Please try again." />
 
-<cfparam name="args.message" field="false" default="" />
-<cfparam name="args.postLoginUrl" field="false" default="" />
+<cfparam name="args.message"         field="false" default="" />
+<cfparam name="args.postLoginUrl"    field="false" default="" />
 <cfparam name="args.allowRememberMe" field="false" default="" />
 
 <cfoutput>

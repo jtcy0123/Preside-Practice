@@ -1,10 +1,10 @@
-<cfparam name="args.title" field="page.title" editable="true" />
-<cfparam name="args.empty_password" field="reset_password.empty_password" default="You must supply a new password." />
+<cfparam name="args.title"                  field="page.title" editable="true" />
+<cfparam name="args.empty_password"         field="reset_password.empty_password"         default="You must supply a new password." />
 <cfparam name="args.passwords_do_not_match" field="reset_password.passwords_do_not_match" default="The passwords you supplied do not match." />
-<cfparam name="args.unknown_error" field="reset_password.unknown_error" default="An unknown error occurred while attempting to reset your password. Please try again." />
+<cfparam name="args.unknown_error"          field="reset_password.unknown_error"          default="An unknown error occurred while attempting to reset your password. Please try again." />
 
 <cfparam name="rc.message" default="" />
-<cfparam name="rc.token" default="" />
+<cfparam name="rc.token"   default="" />
 
 <cfoutput>
 	<h1>#args.title#</h1>
@@ -29,7 +29,7 @@
 
     	#renderForm(
     		  formName = "login.reset_password"
-    		, context = "website"
+    		, context  = "website"
     	)#
 
 		<button type="submit" class="btn btn-danger pull-left">#translateResource( uri="page-types.reset_password:submitButton.title" )#</button>
