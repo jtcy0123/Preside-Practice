@@ -16,5 +16,49 @@ component extends="preside.system.config.Config" {
 		settings.ckeditor.defaults.stylesheets.append( "css-layout" );
 
 		settings.features.websiteUsers.enabled = true;
+
+		settings.assetmanager.derivatives = _getConfiguredAssetDerivatives();
+
+		_setupEmailSettings();
+		_setupInterceptors();
+
+		settings.notificationTopics.append( "newBooking" );
+		settings.notificationTopics.append( "seatsSoldOut" );
+
+		coldbox.requestContextDecorator = "app.decorators.RequestContextDecorator";
+	}
+
+	private struct function _getConfiguredAssetDerivatives() {
+		var derivatives = super._getConfiguredAssetDerivatives();
+
+		derivatives.mainImage = {
+			  permissions     = "inherit"
+			, transformations = [
+				 { method="shrinkToFit", args={ width=700, height=450 } }
+			  ]
+		};
+
+		derivatives.eventPdf  = {
+			  permissions     = "inherit"
+			, transformations = [
+				   { method="pdfPreview" , args={ page=1 }, inputfiletype="pdf", outputfiletype="jpg" }
+				 , { method="shrinkToFit", args={ width=100, height=100 } }
+			  ]
+		};
+
+		return derivatives;
+	}
+
+	private function _setupEmailSettings() {
+		settings.email.templates.bookingConfirmation = {
+			  recipientType = "anonymous"
+			, parameters    = [
+				{ id="bookingSummary", required=true }
+			]
+		};
+	}
+
+	private void function _setupInterceptors() {
+		interceptors.append( { class="app.interceptors.EventBookingInterceptor", properties={} } );
 	}
 }
