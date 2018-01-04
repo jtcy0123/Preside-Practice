@@ -5,6 +5,8 @@
 <cf_presideparam name="args.enddate"		                                editable="false" />
 <cf_presideparam name="args.document"		                                editable="false" />
 <cf_presideparam name="args.bookable"		                                editable="false" />
+<cf_presideparam name="args.total_seats"		                            editable="false" />
+<cf_presideparam name="args.seats_booked"		                            editable="false" />
 <cf_presideparam name="args.pageId" 		field="page.id"		            editable="false" />
 <cf_presideparam name="args.region"  		field="GROUP_CONCAT(region.id)" editable="false" />
 
@@ -32,7 +34,8 @@
 			<cfif event.fullyBooked( #args.pageId# ) >
 				<i>Sorry, event fully booked.</i>
 			<cfelse>
-				<a href="#event.buildLink(page="event_booking_page", querystring="evid=#args.pageId#")#">Book now</a>
+				<a href="#event.buildLink(page="event_booking_page", querystring="evid=#args.pageId#")#">Book now</a><br>
+				<i>#val(args.total_seats - args.seats_booked)# seats left!</i>
 			</cfif>
 		<cfelse>
 			<i>Not bookable at the moment.</i>

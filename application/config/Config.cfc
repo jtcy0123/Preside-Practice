@@ -59,6 +59,6 @@ component extends="preside.system.config.Config" {
 	}
 
 	private void function _setupInterceptors() {
-		interceptors.append( { class="app.interceptors.DataChangeInterceptor", properties={} } );
+		interceptors.append( { class="app.interceptors.EventBookingInterceptor", properties={} } );
 	}
 }

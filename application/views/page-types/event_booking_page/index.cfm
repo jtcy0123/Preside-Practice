@@ -16,26 +16,29 @@
 		<cfif rc.error?:false>
 			<p>#args.error_message#</p>
 		</cfif>
+		<cfif rc.evid?:false>
+			<p>Event : #eventTitle#</p>
+			<p>Price : RM #numberFormat( eventPrice, "0.00" )#/seat</p>
 
-		<p>Event : #eventTitle#</p>
-		<p>Price : RM #numberFormat( eventPrice, "0.00" )#/seat</p>
+			<cfif event.fullyBooked( eventId ) >
+				<p>Seats sold out for this event.</p>
+			<cfelse>
+				<form id="booking-form" action="#event.buildLink(linkTo="page-types.event_booking_page.createBooking")#" class="form form-horizontal" method="POST">
 
-		<cfif event.fullyBooked( eventId ) >
-			<p>Seats sold out for this event.</p>
+					#renderForm(
+						  formName         = "event_booking.booking_info"
+						, context          = "website"
+						, formId           = "booking-form"
+						, validationResult = rc.validationResult ?: ""
+						, savedData        = rc.formData ?: {}
+					)#
+
+					<input type="hidden" name="eventId"    value="#eventId#"    />
+					<input type="submit"                   value="Submit"       />
+				</form>
+			</cfif>
 		<cfelse>
-			<form id="booking-form" action="#event.buildLink(linkTo="page-types.event_booking_page.createBooking")#" class="form form-horizontal" method="POST">
-
-				#renderForm(
-					  formName         = "event_booking.booking_info"
-					, context          = "website"
-					, formId           = "booking-form"
-					, validationResult = rc.validationResult ?: ""
-					, savedData        = rc.formData ?: {}
-				)#
-
-				<input type="hidden" name="eventId"    value="#eventId#"    />
-				<input type="submit"                   value="Submit"       />
-			</form>
+			<p><a href="/event.html">Back to events page</a></p>
 		</cfif>
 	</cfif>
 
