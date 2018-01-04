@@ -1,6 +1,6 @@
-<cfparam name="args.title" field="page.title" editable="true" />
-<cfparam name="args.loginId_not_found" field="forgotten_password.loginId_not_found" default="Sorry, your email address is not found in the system." />
-<cfparam name="args.invalid_reset_token" field="forgotten_password.invalid_reset_token" default="Invalid reset token." />
+<cfparam name="args.title"                            field="page.title" editable="true" />
+<cfparam name="args.loginId_not_found"                field="forgotten_password.loginId_not_found"                default="Sorry, your email address is not found in the system." />
+<cfparam name="args.invalid_reset_token"              field="forgotten_password.invalid_reset_token"              default="Invalid reset token." />
 <cfparam name="args.password_reset_instructions_sent" field="forgotten_password.password_reset_instructions_sent" default="Instructions for setting your password have been sent to your registered email account." />
 
 <cfparam name="rc.message" default="" />
@@ -24,7 +24,7 @@
 
     	#renderForm(
     		  formName = "login.forgotten_password"
-    		, context = "website"
+    		, context  = "website"
     	)#
     	<br>
     	<div class="form-group">
