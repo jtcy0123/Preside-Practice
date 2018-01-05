@@ -3,7 +3,7 @@
 <cfoutput query="expiredEvent">
 	<li>
 		<a href="#event.buildLink(page=expiredEvent.id)#">
-			<strong>#title#</strong> on #dateFormat(start, "dd mmm yyyy")# to #dateFormat(end, "dd mmm yyyy")#
+			<strong>#title#</strong> on #dateFormat(start, "dd mmm yyyy")# to #dateFormat(end, "dd mmm yyyy")# (#getDateTimeMessage(start)#)
 		</a>
 	</li>
 </cfoutput>

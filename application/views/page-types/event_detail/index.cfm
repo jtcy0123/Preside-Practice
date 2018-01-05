@@ -27,7 +27,7 @@
 			<h3>#args.title#</h3>
 		</cfif>
 
-		<p>Event starts from #dateFormat(args.startdate, "dd mmm yyyy")# to #dateFormat(args.enddate, "dd mmm yyyy")#</p>
+		<p>Event starts from #dateFormat(args.startdate, "dd mmm yyyy")# to #dateFormat(args.enddate, "dd mmm yyyy")# (#getDateTimeMessage(args.startdate)#)</p>
 		<p>Time : #timeFormat(args.startdate, "HH:mm")# to #timeFormat(args.enddate, "HH:mm")#</p>
 
 		<cfif #args.startdate# GTE now() && #args.bookable# >
