@@ -19,13 +19,11 @@
 				, validationResult    = validationResult
 			)#
 
-			<b>Total Amount : <i id="showTotalAmount">RM #savedData.total_amount?:""#</i></b>
+			<b>Total Amount : RM <i id="showTotalAmount">#savedData.total_amount?:eventPrice#</i></b>
 			<script>
 				var seats = document.getElementById('num_of_seats');
-				seats.onchange = calculateAmount;
-				function calculateAmount(){
-					var price = this.value * #eventPrice#;
-					price = price.toFixed(2);
+				seats.onchange = function(){
+					var price = (this.value * #eventPrice#).toFixed(2);
 					document.getElementById("showTotalAmount").innerHTML = price;
 				}
 			</script>

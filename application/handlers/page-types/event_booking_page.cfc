@@ -20,7 +20,7 @@ component {
 
 		var applicationProgress = eventBookingService.getApplicationProgress( eventId = args.eventId );
 		args.currentStep = isNumeric( applicationProgress.status?:"" ) && applicationProgress.status <= 3 ? applicationProgress.status : 1;
-		args.state = applicationProgress.state?:"";
+		args.state       = applicationProgress.state?:"";
 
 		rc.savedData = rc.savedData ?: applicationProgress.state['step#args.currentStep#Detail'] ?: {};
 
