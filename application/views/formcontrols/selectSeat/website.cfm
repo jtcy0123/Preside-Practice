@@ -1,9 +1,10 @@
 <cfscript>
-	inputName      = args.name           ?: "";
-	inputId        = args.id             ?: "";
-	inputClass     = args.class          ?: "";
-	seatsAvailable = args.seatsAvailable ?: "";
-	label          = args.label          ?: "";
+	inputName      = args.name                   ?: "";
+	inputId        = args.id                     ?: "";
+	inputClass     = args.class                  ?: "";
+	seatsAvailable = args.seatsAvailable         ?: "";
+	label          = args.label                  ?: "";
+	value 		   = args.savedData.num_of_seats ?: "";
 </cfscript>
 
 <cfoutput>
@@ -11,7 +12,8 @@
 		<cfif seatsAvailable GTE 1 >
 			<select class="#inputClass#" name="#inputName#" id="#inputId#">
 				<cfloop from="1" to="#seatsAvailable#" index="index">
-					<option value="#index#" > #index# </option>
+					<cfset selected   = ListFindNoCase( value, index ) />
+					<option value="#index#"<cfif selected> selected="selected"</cfif>> #index# </option>
 				</cfloop>
 			</select>
 		<cfelse>
