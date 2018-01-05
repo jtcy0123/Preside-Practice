@@ -7,19 +7,33 @@
 <cfset eventPrice = prc.eventDetail.price ?: "" />
 <cfset eventTitle = prc.eventDetail.title ?: "" />
 
+<!--- <cfdump var="#rc#" > --->
+
 <cfoutput>
 	<h1>#args.title#</h1>
 
-	<cfif rc.success?:false>
+<!--- 	<cfif rc.success?:false>
 		<p>#args.success_message#</p>
-	<cfelse>
+	<cfelse> --->
 		<cfif rc.error?:false>
 			<p>#args.error_message#</p>
 		</cfif>
-		<cfif rc.evid?:false>
+		<cfif len(rc.evid?:"")?:false>
 			<p>Event : #eventTitle#</p>
 			<p>Price : RM #numberFormat( eventPrice, "0.00" )#/seat</p>
 
+			<cfswitch expression="#args.currentStep#">
+				<cfcase value="2">
+					#renderView( view='page-types/event_booking_page/_sessionDetail', args=args )#
+				</cfcase>
+				<cfcase value="3">
+					#renderView( view='page-types/event_booking_page/_paymentInfo', args=args )#
+				</cfcase>
+				<cfdefaultcase>
+					#renderView( view='page-types/event_booking_page/_personalDetail', args=args )#
+				</cfdefaultcase>
+			</cfswitch>
+<!---
 			<cfif event.fullyBooked( eventId ) >
 				<p>Seats sold out for this event.</p>
 			<cfelse>
@@ -37,10 +51,11 @@
 					<input type="submit"                   value="Submit"       />
 				</form>
 			</cfif>
+ --->
 		<cfelse>
 			<p><a href="/event.html">Back to events page</a></p>
 		</cfif>
-	</cfif>
+	<!--- </cfif> --->
 
 	#args.main_content#
 </cfoutput>

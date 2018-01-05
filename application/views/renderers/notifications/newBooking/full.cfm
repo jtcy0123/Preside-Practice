@@ -2,7 +2,7 @@
 <cfparam name="args.lastname"        type="string"  default="" />
 <cfparam name="args.email"           type="string"  default="" />
 <cfparam name="args.num_of_seats"    type="numeric" default="" />
-<cfparam name="args.session"         type="string"  default="" />
+<cfparam name="args.sessions"        type="string"  default="" />
 <cfparam name="args.special_request" type="string"  default="" />
 <cfparam name="args.total_amount"    type="numeric" default="" />
 
@@ -29,8 +29,8 @@
 			<tr>
 				<td style="text-align: right;">Sessions : </td>
 				<td>
-					<cfloop list="#args.session#" item="ses">
-						#renderLabel( "session" , ses )# <cfif ses neq listLast(args.session)>,</cfif>
+					<cfloop list="#args.sessions#" item="ses">
+						#renderLabel( "session" , ses )# <cfif ses neq listLast(args.sessions)>,</cfif>
 					</cfloop>
 				</td>
 			</tr>

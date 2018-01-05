@@ -11,7 +11,7 @@ component {
     private string function full( event, rc, prc, args={} ) {
         args.eventDetails = eventService.getEventByID( id=args.event_detail?:"" );
 
-        args.booking = eventBookingService.getBookingDetailsById(bookingId="CD16A9DB-694D-4A4E-BA0EEC449F15EEE8");
+        args.booking = eventBookingService.getBookingDetailsById(bookingId=rc.id?:"");
 
         return renderView(
               view = "/renderers/notifications/newBooking/full"
