@@ -10,7 +10,7 @@ component {
 		_setEventDetail(arguments.event_detail);
 	}
 
-	public function getAllEventDetail( string id="", string parentPage="", string region="", string category="" ) {
+	public function getAllEventDetail( string id="", string parentPage="", string region="", string category="", numeric currentPage=1, numeric maxRows=0 ) {
 
 		if ( !len( arguments.parentPage & arguments.id ) ) {
 			return QueryNew("");
@@ -18,6 +18,7 @@ component {
 
 		var filter       = "DATE(event_detail.startdate) >= DATE(now())";
 		var filterParams = {};
+		var startRow 	 = ((arguments.currentPage - 1) * arguments.maxRows) + 1;
 
 		if ( len(arguments.parentPage) ) {
 			filter &= " AND page.parent_page = :page.parent_page ";
@@ -46,6 +47,8 @@ component {
 			, saveFilters  = ["livePages"]
 			, groupBy      = "event_detail.id"
 			, orderBy      = "event_detail.startdate"
+			, maxRows 	   = arguments.maxRows
+			, startRow 	   = startRow
 		);
 	}
 

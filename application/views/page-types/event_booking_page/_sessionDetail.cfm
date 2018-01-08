@@ -3,6 +3,8 @@
 	validationResult = rc.validationResult   ?: "";
 	eventId 		 = args.eventId 	     ?: "";
 	eventPrice 		 = prc.eventDetail.price ?: "";
+
+	event.include("js-booking_session").includeData({ eventPrice=eventPrice })
 </cfscript>
 
 <cfoutput>
@@ -20,13 +22,6 @@
 			)#
 
 			<b>Total Amount : RM <i id="showTotalAmount">#savedData.total_amount?:eventPrice#</i></b>
-			<script>
-				var seats = document.getElementById('num_of_seats');
-				seats.onchange = function(){
-					var price = (this.value * #eventPrice#).toFixed(2);
-					document.getElementById("showTotalAmount").innerHTML = price;
-				}
-			</script>
 
 			<input type="hidden" name="total_amount" />
 
