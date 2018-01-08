@@ -4,7 +4,13 @@ component {
 	property name="eventService"		 inject="EventService";
 
 	public function index( event, rc, prc, args={} ){
-		prc.eventDetail = eventService.getAllEventDetail( parentPage = event.getCurrentPageId()?:"", region = rc.region?:"", category = rc.category?:"" )
+		prc.events = eventService.getAllEventDetail( parentPage = event.getCurrentPageId()?:"", region = rc.region?:"", category = rc.category?:"" );
+
+		rc.maxPerPage = 2;
+		rc.page = rc.page?:1;
+		rc.totalPage = ROUND(prc.events.recordCount / rc.maxPerPage);
+
+		prc.eventDetail = eventService.getAllEventDetail( parentPage = event.getCurrentPageId()?:"", region = rc.region?:"", category = rc.category?:"", currentPage=rc.page, maxRows=rc.maxPerPage );
 
 		prc.category    = presideObjectService.selectData(
 							objectName="category"
@@ -13,6 +19,15 @@ component {
 		prc.region      = presideObjectService.selectData(
 							objectName="region"
 						);
+
+		if( event.isAjax() ) {
+			event.noLayout();
+
+			return  renderView(
+			      view = "page-types/event_listing/_eventDetail2"
+			    , args = args
+			);
+		}
 
 		return  renderView(
 		      view          = "page-types/event_listing/index"
