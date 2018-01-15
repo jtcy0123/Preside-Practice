@@ -6,9 +6,11 @@
     "createPackageDirectory" : false,
     "private":true,
     "installPaths":{
-        "presidecms":"preside"
+          "presidecms"                : "preside"
+        , "preside-ext-mailgun"       : "application/extensions/preside-ext-mailgun/"
     },
     "dependencies":{
-        "presidecms":"stable"
+          "presidecms"                : "stable"
+        , "preside-ext-mailgun"       : "^1.0.10"
     }
 }
