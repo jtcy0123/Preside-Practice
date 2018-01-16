@@ -136,7 +136,7 @@ component {
 		return result;
 	}
 
-/*
+
 	public function saveBooking(
 		  required string  firstname
         , required string  lastname
@@ -191,7 +191,7 @@ component {
 
 		return newBooking;
 	}
-*/
+
 
 	// getters and setters
 	private any function _getSiteTreeService() {
