@@ -26,6 +26,11 @@ component extends="preside.system.config.Config" {
 		settings.notificationTopics.append( "seatsSoldOut" );
 
 		coldbox.requestContextDecorator = "app.decorators.RequestContextDecorator";
+
+		settings.features.formbuilder.enabled = true;
+		settings.formbuilder.itemTypes.multipleChoice.types.selectSeat = { isFormField = true };
+		settings.formbuilder.itemTypes.multipleChoice.types.objectSessionCheckbox = { isFormField = true };
+		settings.formbuilder.actions.append( "eventBooking" );
 	}
 
 	private struct function _getConfiguredAssetDerivatives() {

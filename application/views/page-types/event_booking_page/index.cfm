@@ -16,6 +16,7 @@
 		<cfif len(rc.evid?:"")?:false>
 			<p>Event : #eventTitle#</p>
 			<p>Price : RM #numberFormat( eventPrice, "0.00" )#/seat</p>
+<!---
 
 			<cfswitch expression="#args.currentStep#">
 				<cfcase value="2">
@@ -28,6 +29,7 @@
 					#renderView( view='page-types/event_booking_page/_personalDetail', args=args )#
 				</cfdefaultcase>
 			</cfswitch>
+ --->
 <!---
 			<cfif event.fullyBooked( eventId ) >
 				<p>Seats sold out for this event.</p>

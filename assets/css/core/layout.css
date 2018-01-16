@@ -85,3 +85,11 @@ body {
     }
   }
 }
+
+.grey-background {
+  background-color: #ccc;
+}
+
+.center {
+  text-align: center;
+}
