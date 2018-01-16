@@ -8,9 +8,11 @@
     "installPaths":{
           "presidecms"                : "preside"
         , "preside-ext-mailgun"       : "application/extensions/preside-ext-mailgun/"
+        , "preside-ext-elasticsearch" : "application/extensions/preside-ext-elasticsearch/"
     },
     "dependencies":{
           "presidecms"                : "stable"
         , "preside-ext-mailgun"       : "^1.0.10"
+        , "preside-ext-mailgun"       : "git://github.com/pixl8/preside-ext-elasticsearch.git#v1.1.0"
     }
 }
