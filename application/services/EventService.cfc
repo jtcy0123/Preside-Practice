@@ -20,10 +20,10 @@ component {
 		var filterParams = {};
 		var startRow 	 = ((arguments.currentPage - 1) * arguments.maxRows) + 1;
 
-		if ( len(arguments.parentPage) ) {
-			filter &= " AND page.parent_page = :page.parent_page ";
-			filterParams["page.parent_page"] = arguments.parentPage
-		};
+		// if ( len(arguments.parentPage) ) {
+		// 	filter &= " AND page.parent_page = :page.parent_page ";
+		// 	filterParams["page.parent_page"] = arguments.parentPage
+		// };
 
 		if ( len(arguments.id) ) {
 			filter &= " AND page.id IN ( :page.id ) ";
@@ -41,7 +41,7 @@ component {
 		};
 
 		return _getEventDetail().selectData(
-			  selectFields = ["page.id", "page.title","event_detail.startdate as start","event_detail.enddate as end", "GROUP_CONCAT(regions.label) as regions", "event_detail.category as category"]
+			  selectFields = ["page.id", "page.title","event_detail.startdate as start","event_detail.enddate as end", "GROUP_CONCAT(regions.label) as regions", "category.label as category"]
 			, filter       = filter
 			, filterParams = filterParams
 			, saveFilters  = ["livePages"]

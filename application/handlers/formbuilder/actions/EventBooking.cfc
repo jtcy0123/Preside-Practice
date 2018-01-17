@@ -11,10 +11,10 @@ component {
 		var totalAmount = rc.num_of_seats * prc.eventDetail.price ;
 
 		var bookingData = {
-			  firstname       = trimHtml( rc.firstname )
-			, lastname        = trimHtml( rc.lastname )
+			  firstname       = trimHtml( rc.firstname?:"" )
+			, lastname        = trimHtml( rc.lastname?:"" )
 			, email           = trimHtml( rc.email )
-			, num_of_seats    = rc.num_of_seats
+			, num_of_seats    = rc.num_of_seats?:0
 			, session         = rc.sessions
 			, special_request = trimHtml( rc.special_request )
 			, total_amount    = totalAmount
