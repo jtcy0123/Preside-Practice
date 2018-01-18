@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form i18nBaseUri="page-types.resource_library_page:">
+	<tab id="resource_library">
+		<fieldset id="resource_library">
+
+			<field binding="resource_library_page.category" />
+			<field binding="resource_library_page.region" />
+
+		</fieldset>
+	</tab>
+</form>
