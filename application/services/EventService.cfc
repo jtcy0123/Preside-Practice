@@ -54,9 +54,10 @@ component {
 
 	public function getEventByID( id="" ) {
 		return _getEventDetail().selectData(
-			  selectFields = ["page.id", "page.title", "event_detail.startdate as start", "event_detail.enddate as end", "event_detail.price as price", "event_detail.total_seats", "event_detail.seats_booked"]
+			  selectFields = ["page.id", "page.title", "event_detail.startdate as start", "event_detail.enddate as end", "event_detail.price as price", "event_detail.bookable", "event_detail.total_seats", "event_detail.seats_booked", "event_detail.document", "GROUP_CONCAT(regions.label) as regions", "GROUP_CONCAT(regions.id) as regionIds", "category.label as category"]
 			, filter       = "DATE(event_detail.startdate) >= DATE(now()) AND page.id IN ( :page.id )"
 			, filterParams = { "page.id" = listToArray(arguments.id) }
+			, groupBy 	   = "event_detail.id"
 		);
 	}
 

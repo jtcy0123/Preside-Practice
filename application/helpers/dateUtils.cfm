@@ -25,7 +25,7 @@
             }
 
             if( compareDirection EQ 'lt' ){
-                validCompare = different LT differentCompare;
+                validCompare = different LTE differentCompare;
             }else if( compareDirection EQ 'gt' ){
                 validCompare = different GT differentCompare;
             }

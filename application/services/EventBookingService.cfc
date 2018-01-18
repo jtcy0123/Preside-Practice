@@ -17,6 +17,27 @@ component {
 		return this;
 	}
 
+	public function userHasBookedEvent( string userId="", string event="" ) {
+		if ( !len(arguments.userId) || !len(arguments.event) ) {
+			return false;
+		}
+
+		var user = $getPresideObjectService().selectData(
+				  objectName = "website_user"
+				, filter = { "website_user.id" = arguments.userId }
+			);
+
+		var filter = { "event_booking.email" = user.email_address, "event_booking.event_detail" = arguments.event }
+
+		results = $getPresideObjectService().selectData(
+				  objectName = "event_booking"
+				, filter = filter
+				, groupby = "event_booking.id"
+			);
+
+		return results.recordCount > 0;
+	}
+
 	public function getBookingDetailsById( string bookingId="" ) {
 		if ( !len(arguments.bookingId) ) {
 			return QueryNew("");

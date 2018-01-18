@@ -16,6 +16,7 @@
 </cfscript>
 
 <cfoutput>
+	#args.main_content#
 	<div class="well">
 		<cfif #args.startdate# LT now() >
 			<h4>#args.title# (Expired)</h4>
