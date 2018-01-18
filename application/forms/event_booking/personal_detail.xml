@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form i18nBaseUri="forms.event_booking.personal_detail:">
+	<tab>
+		<fieldset id="personal_detail">
+			<field name="firstname" control="textInput"  minLength="6" required="true" />
+			<field name="lastname"  control="textInput"                required="true" />
+			<field name="email"     control="emailInput" minLength="6" required="true" />
+		</fieldset>
+	</tab>
+</form>
