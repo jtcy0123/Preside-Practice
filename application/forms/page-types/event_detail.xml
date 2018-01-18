@@ -14,6 +14,7 @@
             <field binding="event_detail.sessions"                       />
             <field binding="event_detail.total_seats"                    />
 			<field binding="event_detail.seats_booked"                   />
+			<field binding="event_detail.condition" control="objectPicker" object="rules_engine_condition" />
 		</fieldset>
 	</tab>
 </form>

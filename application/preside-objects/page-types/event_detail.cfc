@@ -19,4 +19,5 @@ component  {
 	property name="programmes"     relationship="one-to-many"  relatedTo="programme"     relationshipkey="event_detail" ;
 	property name="sessions"       relationship="one-to-many"  relatedTo="session"       relationshipkey="event_detail" ;
 	property name="event_bookings" relationship="one-to-many"  relatedTo="event_booking" relationshipkey="event_detail" ;
+	property name="condition"	   relationship="many-to-one"  relatedTo="rules_engine_condition" ruleContext="webrequest" ;
 }
