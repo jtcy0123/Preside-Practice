@@ -131,6 +131,8 @@ component {
 				);
 
 				if ( len(newBooking) ) {
+					result.newBookingId = newBooking;
+
 					$sendEmail(
 						  template = "bookingConfirmation"
 						, to       = [ bookingData.email ]
