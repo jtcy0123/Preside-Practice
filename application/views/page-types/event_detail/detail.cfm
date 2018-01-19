@@ -4,7 +4,6 @@
 </cfscript>
 
 <cfoutput>
-	#dateDiff("w", now(), prc.eventDetail.start)#
 	<div class="well">
 		<cfif #prc.eventDetail.start# LT now() >
 			<h4>#prc.eventDetail.title# (Expired)</h4>

@@ -103,6 +103,13 @@ component {
 
 			var result = eventBookingService.finalizeApplication( eventId=eventId );
 
+			event.audit(
+				  action   = "datamanager_add_record"
+				, type     = "datamanager"
+				, recordId = result.newBookingId
+				, detail   = { objectName = "event_booking" }
+			);
+
 			setNextEvent(
 				  url           = event.buildlink( page="event_booking_page", querystring="evid="&eventId )
 				, persistStruct = { success = true }
