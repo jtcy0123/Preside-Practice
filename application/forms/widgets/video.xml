@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form i18nBaseUri="widgets.video:">
+	<tab>
+		<fieldset>
+			<field name="title"  maxlength="150" />
+			<field name="url"    control="textinput" required="true" />
+			<field name="width"  control="textinput" required="true" />
+			<field name="height" control="textinput" required="true" />
+		</fieldset>
+	</tab>
+</form>

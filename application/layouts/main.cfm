@@ -8,6 +8,9 @@
 	     .include( "css-layout"    )
 	     .include( "js-bootstrap"  )
 	     .include( "js-jquery"     );
+
+	addthisId = getSystemSetting(category="addThis",setting="addthis_id"); /// "ra-5a431190277ad3b1";
+	disqusId  = getSystemSetting(category="disqus",setting="disqus_id");
 </cfscript>
 
 <cfoutput><!DOCTYPE html>
@@ -22,6 +25,10 @@
 		<!--[if lt IE 9]>
 			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
+
+		<!-- Go to www.addthis.com/dashboard to customize your tools -->
+		<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js##pubid=#addthisId#"></script>
+
 	</head>
 	<body>
 		<div class="container">
@@ -34,7 +41,11 @@
 
 			#body#
 
+
 			<div class="footer">
+				<!-- Go to www.addthis.com/dashboard to customize your tools -->
+				<div class="addthis_inline_share_toolbox"></div>
+
 				<p>&copy; Pixl8 2013-#Year( Now() )#</p>
 			</div>
 		</div>
@@ -42,5 +53,7 @@
 		#adminBar#
 
 		#event.renderIncludes( "js" )#
+
+		<script id="dsq-count-scr" src="//#disqusId#.disqus.com/count.js" async></script>
 	</body>
 </html></cfoutput>
