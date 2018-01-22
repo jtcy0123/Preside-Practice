@@ -15,11 +15,11 @@ component {
 				, context = "user"
 			);
 
-		if ( !isLoggedIn() ) {
-			event.accessDenied( reason="LOGIN_REQUIRED" );
-		} else if ( !prc.condition ) {
-			event.accessDenied( reason="INSUFFICIENT_PRIVILEGES" );
-		}
+		// if ( !isLoggedIn() ) {
+		// 	event.accessDenied( reason="LOGIN_REQUIRED" );
+		// } else if ( !prc.condition ) {
+		// 	event.accessDenied( reason="INSUFFICIENT_PRIVILEGES" );
+		// }
 
 		return renderView(
 			  view = "page-types/event_detail/detail"
