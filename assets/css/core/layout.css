@@ -34,7 +34,7 @@ body {
 /* Customize container */
 @media (min-width: 768px) {
   .container {
-    max-width: 730px;
+    /*max-width: 730px;*/
   }
 }
 .container-narrow > hr {
@@ -84,4 +84,16 @@ body {
       color : inherit;
     }
   }
+}
+
+.grey-background {
+  background-color: #ccc;
+}
+
+.center {
+  text-align: center;
+}
+
+.clear {
+  clear: both;
 }
