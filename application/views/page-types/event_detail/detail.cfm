@@ -41,7 +41,8 @@
 
 	<hr/>
 
-	<cfif #prc.eventDetail.start# LT now() >
+	<!--- <cfif #prc.eventDetail.start# LT now() > --->
+	<cfif hasWebsitePermission( "comments.add" ) >
 		<div id="disqus_thread"></div>
 		<script>
 		    var disqus_config = function () {

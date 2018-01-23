@@ -31,6 +31,8 @@ component extends="preside.system.config.Config" {
 		settings.formbuilder.itemTypes.multipleChoice.types.selectSeat = { isFormField = true };
 		settings.formbuilder.itemTypes.multipleChoice.types.objectSessionCheckbox = { isFormField = true };
 		settings.formbuilder.actions.append( "eventBooking" );
+
+		settings.websitePermissions.comments = [ "add", "edit" ];
 	}
 
 	private struct function _getConfiguredAssetDerivatives() {

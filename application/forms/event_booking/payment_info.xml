@@ -4,7 +4,7 @@
 		<fieldset id="payment_info">
 			<field name="purchaseNum"   control="textInput"                  />
 			<field name="creditCardNum" control="textInput"  required="true" />
-			<field name="expiredDate"   control="datepicker" required="true" />
+			<!-- <field name="expiredDate"   control="datepicker" required="true" /> -->
 		</fieldset>
 	</tab>
 </form>

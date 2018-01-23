@@ -13,7 +13,7 @@
 			<input type="hidden" name="eventId"   value="#eventId#"             />
 
 			#renderForm(
-				  formName            = "event_booking.payment_info"
+				  formName            = prc.newPaymentInfoFormName
 				, includeValidationJs = false
 				, context             = "website"
 				, savedData           = savedData
