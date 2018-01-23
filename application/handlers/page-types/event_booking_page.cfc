@@ -33,7 +33,7 @@ component {
 				, control  = "datepicker"
 				, minDate  = dateFormat( now() ,"yyyy-mm-dd" )
 				, required = true
-				, label    = "Expiry Date"
+				, label    = "forms.event_booking.payment_info:field.expiredDate.title"
 			);
 		});
 
