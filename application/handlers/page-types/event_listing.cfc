@@ -2,6 +2,7 @@ component {
 
 	property name="presideObjectService" inject="PresideObjectService";
 	property name="eventService"		 inject="EventService";
+	property name="multilingualPresideObjectService" inject="multilingualPresideObjectService";
 
 	public function index( event, rc, prc, args={} ){
 		prc.events = eventService.getAllEventDetail( parentPage = event.getCurrentPageId()?:"", region = rc.region?:"", category = rc.category?:"" );
@@ -19,6 +20,8 @@ component {
 		prc.region      = presideObjectService.selectData(
 							objectName="region"
 						);
+
+		prc.availableLanguages = multilingualPresideObjectService.listLanguages();
 
 		if( event.isAjax() ) {
 			event.noLayout();

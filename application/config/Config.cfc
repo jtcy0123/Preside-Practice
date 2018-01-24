@@ -33,6 +33,8 @@ component extends="preside.system.config.Config" {
 		settings.formbuilder.actions.append( "eventBooking" );
 
 		settings.websitePermissions.comments = [ "add", "edit" ];
+
+		settings.features.multilingual.enabled = true;
 	}
 
 	private struct function _getConfiguredAssetDerivatives() {

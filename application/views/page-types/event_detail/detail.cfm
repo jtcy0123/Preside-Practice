@@ -12,7 +12,7 @@
 				<img src="#pdfImage#" alt=""/>Download
 			</a>
 		<cfelse>
-			<h3>#prc.eventDetail.title#</h3>
+			<h3>#prc.eventDetail.title# #prc.eventDetail.category#</h3>
 		</cfif>
 
 		<p>Event starts from #dateFormat(prc.eventDetail.start, "dd mmm yyyy")# to #dateFormat(prc.eventDetail.end, "dd mmm yyyy")# (#getDateTimeMessage(prc.eventDetail.start)#)</p>
