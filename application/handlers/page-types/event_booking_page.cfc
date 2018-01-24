@@ -3,6 +3,7 @@ component {
 	property name="eventService"        inject="EventService";
 	property name="notificationService" inject="notificationService";
 	property name="eventBookingService" inject="EventBookingService";
+	property name="formDefinition"      inject="FormDefinition";
 
 	private function index( event, rc, prc, args={} ) {
 
@@ -23,6 +24,18 @@ component {
 		args.state       = applicationProgress.state?:"";
 
 		rc.savedData = rc.savedData ?: applicationProgress.state['step#args.currentStep#Detail'] ?: {};
+
+		prc.newPaymentInfoFormName = formsService.createForm( basedOn="event_booking.payment_info", generator=function( formDefinition ){
+			formDefinition.addField(
+				  tab      = ""
+				, fieldset = "payment_info"
+				, name     = "expiredDate"
+				, control  = "datepicker"
+				, minDate  = dateFormat( now() ,"yyyy-mm-dd" )
+				, required = true
+				, label    = "forms.event_booking.payment_info:field.expiredDate.title"
+			);
+		});
 
 		return renderView(
 			  view          = 'page-types/event_booking_page/index'

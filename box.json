@@ -13,6 +13,6 @@
     "dependencies":{
           "presidecms"                : "stable"
         , "preside-ext-mailgun"       : "^1.0.10"
-        , "preside-ext-mailgun"       : "git://github.com/pixl8/preside-ext-elasticsearch.git#v1.1.0"
+        , "preside-ext-elasticsearch" : "git://github.com/pixl8/preside-ext-elasticsearch.git#v1.1.0"
     }
 }

@@ -97,3 +97,7 @@ body {
 .clear {
   clear: both;
 }
+
+.datepicker-days td.day.disabled {
+  opacity: 0.5;
+}
