@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form i18nBaseUri="forms.event_booking.payment_info:">
+	<tab>
+		<fieldset id="payment_info">
+			<field name="purchaseNum"   control="textInput"                  />
+			<field name="creditCardNum" control="textInput"  required="true" />
+			<!-- <field name="expiredDate"   control="datepicker" required="true" /> -->
+		</fieldset>
+	</tab>
+</form>
