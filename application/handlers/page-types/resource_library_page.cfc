@@ -9,7 +9,8 @@ component {
 		prc.results = _getSearchResult( argumentCollection = arguments );
 
 		if ( event.isAjax() ) {
-			return renderView( view="page-types/resource_library_page/_results" );
+			// return renderView( view="page-types/resource_library_page/_results" );
+			event.renderData( data=renderView( view="/page-types/resource_library_page/_results", args=args ), type="HTML" );
 		}
 
 		return renderView(

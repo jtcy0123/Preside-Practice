@@ -2,6 +2,10 @@
 <cf_presideparam name="args.main_content"   field="page.main_content"               editable="true"  />
 <cf_presideparam name="args.bottom_content" field="page.bottom_content"             editable="true"  />
 <cf_presideparam name="args.featured_event" field="GROUP_CONCAT(featured_event.id)" editable="false" />
+<cf_presideparam name="args.categories" field="GROUP_CONCAT(categories.id)" editable="false" />
+
+<cfdump var="#args.featured_event#">
+<cfdump var="#args.categories#">
 
 <cfset event.include( "js-event_listing" ).includeData({
 	  currentPage      = rc.page?:1

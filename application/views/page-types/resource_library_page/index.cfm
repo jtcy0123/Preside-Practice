@@ -21,9 +21,18 @@
 		</div>
 
 		<cfif prc.results.hasnextpage() >
-			<a href="/resource-library-search.html" id="showMore">
+			<!--- <a href="/resource-library-search.html" id="showMore">
 				Show More
-			</a>
+			</a> --->
+			<div class = "show-more" >
+				<a id                    = "js-load-more-resources"
+				   class                 = "btn thin"
+			       href                  = "/resource-library-search.html"
+				   data-load-more-target = "resourcesDiv"
+				>
+					Show more
+				</a>
+			</div>
 		</cfif>
 	</div>
 

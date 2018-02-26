@@ -18,7 +18,7 @@
 		<div class="col-sm-offset-3 col-sm-6">
 			<div class="clearfix">
 				#args.renderedItem#
-				<cfif Len( Trim( args.error ) )>
+				<cfif Leln( Trim( args.error ) )>
 					<label for="#args.id#" class="error">#args.error#</label>
 				</cfif>
 			</div>
