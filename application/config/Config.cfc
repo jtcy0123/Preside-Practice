@@ -16,5 +16,48 @@ component extends="preside.system.config.Config" {
 		settings.ckeditor.defaults.stylesheets.append( "css-layout" );
 
 		settings.features.websiteUsers.enabled = true;
+
+		settings.assetmanager.derivatives = _getConfiguredAssetDerivatives();
+
+		_setupEmailSettings();
+		_setupInterceptors();
+
+		settings.notificationTopics.append( "newBooking" );
+		settings.notificationTopics.append( "seatsSoldOut" );
+
+		coldbox.requestContextDecorator = "app.decorators.RequestContextDecorator";
+
+		settings.features.formbuilder.enabled = true;
+		settings.formbuilder.itemTypes.multipleChoice.types.selectSeat = { isFormField = true };
+		settings.formbuilder.itemTypes.multipleChoice.types.objectSessionCheckbox = { isFormField = true };
+		settings.formbuilder.actions.append( "eventBooking" );
+
+		settings.websitePermissions.comments = [ "add", "edit" ];
+
+		settings.features.multilingual.enabled = true;
+	}
+
+	private struct function _getConfiguredAssetDerivatives() {
+		var derivatives = super._getConfiguredAssetDerivatives();
+
+		derivatives.toc = {
+			  permission = "inherit"
+			, transformations = [ { method="resize", args={ width=136, height=136, maintainaspectratio=true } } ]
+		};
+
+		return derivatives;
+	}
+
+	private function _setupEmailSettings() {
+		settings.email.templates.bookingConfirmation = {
+			  recipientType = "anonymous"
+			, parameters    = [
+				{ id="bookingSummary", required=true }
+			]
+		};
+	}
+
+	private void function _setupInterceptors() {
+		interceptors.append( { class="app.interceptors.EventBookingInterceptor", properties={} } );
 	}
 }

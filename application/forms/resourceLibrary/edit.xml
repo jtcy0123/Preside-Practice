@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form i18nBaseUri="preside-objects.resource_library_resource:">
+
+	<tab id="tagging" sortorder="15">
+		<fieldset id="tagging">
+			<field sortorder="10" binding="resource_library_resource.category" quickadd="true" quickedit="true" />
+			<field sortorder="20" binding="resource_library_resource.region" quickadd="true" quickedit="true" />
+		</fieldset>
+	</tab>
+
+</form>

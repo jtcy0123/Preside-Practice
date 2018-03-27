@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form i18nBaseUri="widgets.event:">
+	<tab>
+		<fieldset>
+			<field name="title" maxlength="150" placeholder="e.g. 5 Latest Events" />
+			<field name="number_of_events" control="select" values="0,1,2,3,4,5,6,7,8,9,10" labels="Show all,1,2,3,4,5,6,7,8,9,10" placeholder="Number of events to be shown" required="true" />
+			<!-- <field name="number" control="textinput" required="true" >
+				<rule validator="match" message="formbuilder.item-types.formfield:validation.error.invalid.name.format">
+					<param name="regex" value="^[0-9]*$" />
+				</rule>
+			</field> -->
+			<field name="region" control="objectPicker" object="region" placeholder="Optional" />
+		</fieldset>
+	</tab>
+</form>

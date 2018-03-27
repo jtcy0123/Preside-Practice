@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form i18nBaseUri="forms.login.login_page:">
+	<tab>
+		<fieldset id="login_page">
+			<field name="loginId"  control="emailInput" required="true" />
+			<field name="password" control="password"   required="true" />
+		</fieldset>
+	</tab>
+</form>
