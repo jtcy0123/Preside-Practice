@@ -1,3 +1,6 @@
 [submodule "application/extensions/preside-ext-resource-library"]
 	path = application/extensions/preside-ext-resource-library
 	url = git@pixl8.git.beanstalkapp.com:/pixl8/preside-ext-resource-library.git
+[submodule "application/extensions/preside-ext-multiselect"]
+	path = application/extensions/preside-ext-multiselect
+	url = https://github.com/pixl8/preside-ext-multiselect.git

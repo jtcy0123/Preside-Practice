@@ -1,5 +1,4 @@
 /**
- * @showInSiteTree         false
  * @allowedParentPageTypes event_listing
  * @allowedChildPageTypes  none
  * @siteTreeGridFields     page.title,startdate,enddate,price,bookable

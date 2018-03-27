@@ -54,10 +54,14 @@
 
 	};
 
-	$( "a#js-load-more" ).loadMore();
+	// $( "a#js-load-more" ).loadMore();
 	$( "a#js-load-more-resources" ).loadMore();
-	$( "a#js-load-more-news" ).loadMore();
-	$( "a#js-load-more-events" ).loadMore();
+	// $( "a#js-load-more-news" ).loadMore();
+	// $( "a#js-load-more-events" ).loadMore();
+
+	$('#filterform input').change(function() {
+		$('#filterform').submit();
+	});
 
 } )( jQuery );
 
