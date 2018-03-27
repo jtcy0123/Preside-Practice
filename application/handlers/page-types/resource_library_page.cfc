@@ -7,9 +7,29 @@ component {
 		rc.region = rc.region?:"";
 
 		prc.results = _getSearchResult( argumentCollection = arguments );
+		if ( len(trim(rc.q?:"")) ) {
+			args.categories = presideObjectService.selectData(
+				  objectName = "category"
+				, filter     = { id = valueArray(prc.results.getresults().category) }
+				, orderBy    = "label"
+			);
+		} else {
+			args.categories = event.getPageProperty( "category", "" );
+		}
+
+		var categories = len(rc.category) ? listToArray(rc.category) : valueArray(args.categories.id);
+
+		args.regions = presideObjectService.selectData(
+			  objectName   = "resource_library_resource"
+			, filter       = { category = categories }
+			, selectFields = ["region.id as id", "region.label as label"]
+			, groupBy      = "region.id"
+			, orderBy      = "label"
+		);
 
 		if ( event.isAjax() ) {
-			return renderView( view="page-types/resource_library_page/_results" );
+			// return renderView( view="page-types/resource_library_page/_results" );
+			event.renderData( data=renderView( view="/page-types/resource_library_page/_results", args=args ), type="HTML" );
 		}
 
 		return renderView(
@@ -34,6 +54,11 @@ component {
 
 		var pageSize = isNumeric( args.maxRows  ) && args.maxRows <= 999999 ? args.maxRows : 2;
 		var page     = isNumeric( rc.page ?: "" ) && rc.page      <= 999999 ? rc.page      : 1;
+		var searchTerm  = rc.q ?: "*";
+		if ( isEmptyString( searchTerm ) ) {
+			searchTerm = "*";
+			rc.q       = "";
+		}
 
 		if( isEmpty( args.category ) || isEmpty( args.region ) ){
 			var defaultFilterValues = presideObjectService.selectData(
@@ -55,7 +80,8 @@ component {
 		}
 
 		return resourceLibrarySearchEngine.search(
-			  category = args.category
+			  q 	   = searchTerm
+			, category = args.category
 			, region   = args.region
 			, page     = page
 			, pageSize = pageSize

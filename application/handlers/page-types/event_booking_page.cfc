@@ -148,6 +148,15 @@ component {
 		setNextEvent( url =  event.buildlink( page="event_booking_page", querystring="evid="&eventId ) );
 	}
 
+	private string function bookingStep( event, rc, prc, args={} ) {
+		args.eventId             = rc.evid ?: "";
+		args.step                = args.step ?:'1'
+		args.details             = {};
+		args.applicationProgress = eventBookingService.getApplicationProgress( eventId = args.eventId );
+		args.details.append( args.applicationProgress.state['step#args.step#Detail'] ?: {} );
+
+		return renderView( view = "/page-types/event_booking_page/_bookingStep#args.step#", args = args );
+	}
 /*
 	public function createBooking( event, rc, prc, args={} ) {
 		var bookingFormName  = "event_booking.booking_info";

@@ -1,3 +1,7 @@
+/**
+* @dataManagerGridFields label,num_of_seats,datecreated,datemodified
+*/
+
 component dataManagerGroup="lookup" {
 
 	property name="firstname"       type="string"  dbtype="varchar"                      ;

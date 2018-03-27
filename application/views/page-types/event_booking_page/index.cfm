@@ -17,8 +17,14 @@
 			<p>Event : #eventTitle#</p>
 			<p>Price : RM #numberFormat( eventPrice, "0.00" )#/seat</p>
 
+			<ul class="form-steps">
 
-			<cfswitch expression="#args.currentStep#">
+				#renderView( view="/page-types/event_booking_page/_bookingStep", args={ step="1", title="Step 1", currentStep=args.currentStep, eventId=eventId } )#
+				#renderView( view="/page-types/event_booking_page/_bookingStep", args={ step="2", title="Step 2", currentStep=args.currentStep, eventId=eventId } )#
+				#renderView( view="/page-types/event_booking_page/_bookingStep", args={ step="3", title="Step 3", currentStep=args.currentStep, eventId=eventId } )#
+
+			</ul>
+			<!--- <cfswitch expression="#args.currentStep#">
 				<cfcase value="2">
 					#renderView( view='page-types/event_booking_page/_sessionDetail' , args=args )#
 				</cfcase>
@@ -28,7 +34,7 @@
 				<cfdefaultcase>
 					#renderView( view='page-types/event_booking_page/_personalDetail', args=args )#
 				</cfdefaultcase>
-			</cfswitch>
+			</cfswitch> --->
 
 <!---
 			<cfif event.fullyBooked( eventId ) >

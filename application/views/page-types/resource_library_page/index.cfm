@@ -9,6 +9,7 @@
 	, region      = rc.region?:""
 	, totalPages  = prc.results.getTotalPages()
 })   />
+<cfset keyword = rc.q ?: "" />
 
 <cfoutput>
 	<h1>#args.title#</h1>
@@ -21,16 +22,26 @@
 		</div>
 
 		<cfif prc.results.hasnextpage() >
-			<a href="/resource-library-search.html" id="showMore">
+			<!--- <a href="/resource-library-search.html" id="showMore">
 				Show More
-			</a>
+			</a> --->
+			<div class = "show-more" >
+				<a id                    = "js-load-more-resources"
+				   class                 = "btn thin"
+			       href                  = "/resource-library-search.html"
+				   data-load-more-target = "resourcesDiv"
+				>
+					Show more
+				</a>
+			</div>
 		</cfif>
 	</div>
 
 	<div class="col-md-offset-1 col-md-2">
 		<form name="filter" action="#event.buildLink()#" method="post" id="filterform">
-			<p><u>Categor</u>ies</p>
-			<cfloop array="#aggregations.category#" index="category">
+			<p><u>Categories</u></p>
+			<!--- Method 1 --->
+			<!--- <cfloop array="#aggregations.category#" index="category">
 				<cfset checked = listFindNoCase(rc.category, category.key) />
 				<div class="checkbox">
 					<label>
@@ -38,10 +49,21 @@
 						#category.label#
 					</label>
 				</div>
+			</cfloop> --->
+			<!--- Method 2 --->
+			<cfloop query="args.categories">
+				<cfset checked = listFindNoCase(rc.category, id) />
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" name="category" value="#id#" <cfif checked>checked</cfif>>
+						#label#
+					</label>
+				</div>
 			</cfloop>
 			<hr>
 			<p><u>Regions</u></p>
-			<cfloop array="#aggregations.region#" index="region">
+			<!--- Method 1 --->
+			<!--- <cfloop array="#aggregations.region#" index="region">
 				<cfset checked = listFindNoCase(rc.region, region.key) />
 				<div class="checkbox">
 					<label>
@@ -49,7 +71,19 @@
 						#region.label#
 					</label>
 				</div>
+			</cfloop> --->
+			<!--- Method 2 --->
+			<cfloop query="args.regions">
+				<cfset checked = listFindNoCase(rc.region, id) />
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" name="region" value="#id#" <cfif checked>checked</cfif>>
+						#label#
+					</label>
+				</div>
 			</cfloop>
+			<p><u>Search by keyword</u></p>
+			<input type="text" name="q" class="form-control mod-orange" value="#keyword#" placeholder="Keyword">
 			<!--- <input type="submit" value="Submit" /> --->
 		</form>
 	</div>
