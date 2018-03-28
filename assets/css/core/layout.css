@@ -34,7 +34,7 @@ body {
 /* Customize container */
 @media (min-width: 768px) {
   .container {
-    max-width: 730px;
+    /*max-width: 730px;*/
   }
 }
 .container-narrow > hr {
@@ -84,4 +84,80 @@ body {
       color : inherit;
     }
   }
+}
+
+.grey-background {
+  background-color: #ccc;
+}
+
+.center {
+  text-align: center;
+}
+
+.clear {
+  clear: both;
+}
+
+.datepicker-days td.day.disabled {
+  opacity: 0.5;
+}
+
+/*event booking*/
+.form-steps .step:first-child {
+    border-top: 1px solid #e9e9e9;
+}
+.form-steps .step.active .step-heading {
+    color: #e30036;
+}
+.form-steps .step .step-heading {
+    color: #bababa;
+    text-transform: uppercase;
+    margin: 0 0 13px;
+}
+.form-steps h2 {
+    font-family: 'Source Sans Pro',sans-serif;
+    line-height: normal;
+    font-weight: lighter;
+    margin: 0 0 20px;
+    color: #222;
+}
+.form-steps .step {
+    border-bottom: 1px solid #e9e9e9;
+    padding: 12px 0 0;
+}
+.form-steps li {
+    display: list-item;
+    list-style: none;
+}
+
+.continue {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    border: 0;
+    font-family: 'Source Sans Pro',sans-serif;
+    font-weight: lighter;
+    font-size: 2rem;
+    line-height: 1!important;
+    color: #fff!important;
+    text-transform: uppercase;
+    padding: 9px 18px;
+    border-radius: 0;
+    box-shadow: none;
+    background: #e30036;
+}
+.show-more .right {
+    text-align: right;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+form .show-more {
+    margin: 10px 0!important;
+}
+
+.show-more {
+    position: relative;
+    text-align: center;
+    padding: 10px 0 0;
+    margin: 10px 0 34px;
 }
