@@ -15,8 +15,13 @@ component {
 			  }
 		);
 
+		bundle.addAsset( id="jq-imagesloaded", path="/js/lib/imagesloaded.pkgd.min.js");
+		bundle.addAsset( id="jq-masonry"     , path="/js/lib/masonry.pkgd.min.js"     );
+
 		bundle.asset( "css-bootstrap" ).before( "*" );
 		bundle.asset( "js-bootstrap" ).dependsOn( "js-jquery" );
+		// masonry bundle -- just include "/js/specific/masonry/" on specific pages
+		bundle.asset( "js-masonry" ).dependsOn( "jq-masonry", "jq-imagesloaded" );
 	}
 
 }
